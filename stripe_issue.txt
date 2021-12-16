@@ -1,0 +1,584 @@
+https://api.stripe.com/v1/payment_methods
+
+Response
+{
+  "id": "pm_1K7D0RI29lnP5KBa3012B6tW",
+  "object": "payment_method",
+  "billing_details": {
+    "address": {
+      "city": "North Wales",
+      "country": "US",
+      "line1": "4105 Avenel Boulevard",
+      "line2": null,
+      "postal_code": "19454",
+      "state": "PA"
+    },
+    "email": "osttesting12@gmail.com",
+    "name": "sachendra kumar",
+    "phone": null
+  },
+  "card": {
+    "brand": "visa",
+    "checks": {
+      "address_line1_check": null,
+      "address_postal_code_check": null,
+      "cvc_check": null
+    },
+    "country": "US",
+    "exp_month": 10,
+    "exp_year": 2023,
+    "funding": "credit",
+    "generated_from": null,
+    "last4": "3892",
+    "networks": {
+      "available": [
+        "visa"
+      ],
+      "preferred": null
+    },
+    "three_d_secure_usage": {
+      "supported": true
+    },
+    "wallet": {
+      "dynamic_last4": "4242",
+      "google_pay": {
+      },
+      "type": "google_pay"
+    }
+  },
+  "created": 1639634395,
+  "customer": null,
+  "livemode": false,
+  "type": "card"
+}
+
+https://api.stripe.com/v1/payment_intents/pi_3K7CpTI29lnP5KBa02fwNEhV/confirm
+Response 
+{
+  "id": "pi_3K7CpTI29lnP5KBa02fwNEhV",
+  "object": "payment_intent",
+  "amount": 100,
+  "automatic_payment_methods": null,
+  "canceled_at": null,
+  "cancellation_reason": null,
+  "capture_method": "automatic",
+  "client_secret": "pi_3K7CpTI29lnP5KBa02fwNEhV_secret_2VL9AAq5jIdEkCRoT3iSZGQFT",
+  "confirmation_method": "automatic",
+  "created": 1639633715,
+  "currency": "usd",
+  "description": null,
+  "last_payment_error": null,
+  "livemode": false,
+  "next_action": null,
+  "payment_method": "pm_1K7D0RI29lnP5KBa3012B6tW",
+  "payment_method_types": [
+    "card"
+  ],
+  "receipt_email": null,
+  "setup_future_usage": null,
+  "shipping": null,
+  "source": null,
+  "status": "succeeded"
+}
+
+////////////////////////
+Controller ERROR
+{
+    "message": "This PaymentMethod was previously used without being attached to a Customer or was detached from a Customer, and may not be used again.",
+    "exception": "Stripe\\Exception\\InvalidRequestException",
+    "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/Exception/ApiErrorException.php",
+    "line": 38,
+    "trace": [
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/Exception/InvalidRequestException.php",
+            "line": 35,
+            "function": "factory",
+            "class": "Stripe\\Exception\\ApiErrorException",
+            "type": "::"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/ApiRequestor.php",
+            "line": 189,
+            "function": "factory",
+            "class": "Stripe\\Exception\\InvalidRequestException",
+            "type": "::"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/ApiRequestor.php",
+            "line": 151,
+            "function": "_specificAPIError",
+            "class": "Stripe\\ApiRequestor",
+            "type": "::"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/ApiRequestor.php",
+            "line": 489,
+            "function": "handleErrorResponse",
+            "class": "Stripe\\ApiRequestor",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/ApiRequestor.php",
+            "line": 120,
+            "function": "_interpretResponse",
+            "class": "Stripe\\ApiRequestor",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/ApiOperations/Request.php",
+            "line": 63,
+            "function": "request",
+            "class": "Stripe\\ApiRequestor",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/ApiOperations/Request.php",
+            "line": 42,
+            "function": "_staticRequest",
+            "class": "Stripe\\ApiResource",
+            "type": "::"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/stripe/stripe-php/lib/PaymentMethod.php",
+            "line": 66,
+            "function": "_request",
+            "class": "Stripe\\ApiResource",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/cashier/src/Billable.php",
+            "line": 437,
+            "function": "attach",
+            "class": "Stripe\\PaymentMethod",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/cashier/src/Billable.php",
+            "line": 523,
+            "function": "addPaymentMethod",
+            "class": "App\\Customer",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/cashier/src/SubscriptionBuilder.php",
+            "line": 251,
+            "function": "updateDefaultPaymentMethod",
+            "class": "App\\Customer",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/cashier/src/SubscriptionBuilder.php",
+            "line": 208,
+            "function": "getStripeCustomer",
+            "class": "Laravel\\Cashier\\SubscriptionBuilder",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/app/Http/Controllers/Front/AppleSubscriptionController.php",
+            "line": 164,
+            "function": "create",
+            "class": "Laravel\\Cashier\\SubscriptionBuilder",
+            "type": "->"
+        },
+        {
+            "function": "applesubscriptionStore",
+            "class": "App\\Http\\Controllers\\Front\\AppleSubscriptionController",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
+            "line": 54,
+            "function": "call_user_func_array"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+            "line": 45,
+            "function": "callAction",
+            "class": "Illuminate\\Routing\\Controller",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+            "line": 219,
+            "function": "dispatch",
+            "class": "Illuminate\\Routing\\ControllerDispatcher",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+            "line": 176,
+            "function": "runController",
+            "class": "Illuminate\\Routing\\Route",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+            "line": 680,
+            "function": "run",
+            "class": "Illuminate\\Routing\\Route",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 30,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Router",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/app/Http/Middleware/PreventBackHistory.php",
+            "line": 18,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "App\\Http\\Middleware\\PreventBackHistory",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php",
+            "line": 41,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php",
+            "line": 75,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php",
+            "line": 49,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php",
+            "line": 56,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Session\\Middleware\\StartSession",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php",
+            "line": 37,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php",
+            "line": 66,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 104,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+            "line": 682,
+            "function": "then",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+            "line": 657,
+            "function": "runRouteWithinStack",
+            "class": "Illuminate\\Routing\\Router",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+            "line": 623,
+            "function": "runRoute",
+            "class": "Illuminate\\Routing\\Router",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+            "line": 612,
+            "function": "dispatchToRoute",
+            "class": "Illuminate\\Routing\\Router",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+            "line": 176,
+            "function": "dispatch",
+            "class": "Illuminate\\Routing\\Router",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 30,
+            "function": "Illuminate\\Foundation\\Http\\{closure}",
+            "class": "Illuminate\\Foundation\\Http\\Kernel",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/app/Http/Middleware/PreventBackHistory.php",
+            "line": 18,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "App\\Http\\Middleware\\PreventBackHistory",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+            "line": 21,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+            "line": 21,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+            "line": 27,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php",
+            "line": 62,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/fideloper/proxy/src/TrustProxies.php",
+            "line": 57,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 163,
+            "function": "handle",
+            "class": "Fideloper\\Proxy\\TrustProxies",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+            "line": 53,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+            "line": 104,
+            "function": "Illuminate\\Routing\\{closure}",
+            "class": "Illuminate\\Routing\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+            "line": 151,
+            "function": "then",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+            "line": 116,
+            "function": "sendRequestThroughRouter",
+            "class": "Illuminate\\Foundation\\Http\\Kernel",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/public/index.php",
+            "line": 55,
+            "function": "handle",
+            "class": "Illuminate\\Foundation\\Http\\Kernel",
+            "type": "->"
+        },
+        {
+            "file": "/data/punchbugg/htdocs/backend/server.php",
+            "line": 21,
+            "function": "require_once"
+        }
+    ]
+}
